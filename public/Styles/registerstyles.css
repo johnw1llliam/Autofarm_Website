@@ -1,0 +1,58 @@
+body {
+    background-image: url('Halaman.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-container {
+    padding: 40px;
+    max-width: 400px;
+    position: relative; 
+    top: -20px; 
+}
+
+.form-group {
+    margin-bottom: 10px; 
+    background-color: transparent ;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    background-color: #ffab40; 
+    border-color: black;
+}
+
+.btn-register {
+    width: 100%;
+    background-color: #875414;
+    border-color: transparent;
+}
+
+.checkbox-remember-me {
+    margin-bottom: 10px; 
+}
+
+.logo{
+    width: 40%;
+    margin-bottom: -32px;
+}
+
+.teksregister{
+    font-size: 31px;
+    font-weight: bold;
+}
+
+.btn-google{
+    margin-top: 10px;
+    background-color: transparent;
+    border-color: black;
+    color: black;
+}
+
+.google-logo{
+    width: 27px;
+}

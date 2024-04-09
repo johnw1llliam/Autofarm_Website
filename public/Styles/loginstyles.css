@@ -1,0 +1,95 @@
+body {
+    background-image: url('Group8.png'); /* Replace 'background-image.jpg' with your actual image file */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    padding: 30px;
+    max-width: 400px;
+    padding-top: -120px;
+}
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+.btn-login {
+    width: 100%;
+}
+
+.logo {
+    width: 50%;
+    margin-bottom: -20px;
+}
+
+.usr{
+    background-color: #ffab40;
+    border-color: black;
+}
+
+.pwd{
+    background-color: #ffab40;
+    border-color: black;
+}
+
+.tekslogin{
+    padding-top: 20px;
+}
+
+.google-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px; /* Adjust margin as needed */
+    cursor: pointer;
+}
+
+.google-login-btn img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.btn-google{
+    margin-top: 15px;
+    background-color: transparent;
+    color: black;
+    border-color: black;
+}
+
+.btnsubmit{
+    background-color: #875414;
+    border-color: transparent;
+    margin-top: 30px;
+}
+
+.checkbox-forgot-password {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; 
+    
+}
+
+.forgot-password-link a{
+    cursor: pointer;
+    color: black;
+}
+
+.tekslogin{
+    font-size:31px;
+    font-weight: bold;
+}
+
+.tekslogin2{
+    font-size: smaller;
+}
+
+.formlogin{
+    margin-top: 30px;
+}
