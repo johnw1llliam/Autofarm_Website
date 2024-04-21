@@ -27,6 +27,7 @@ Route::post('/add-vaccine', [DashboardController::class, 'addVaccine']);
 Route::post('/substract-vaccine', [DashboardController::class, 'substractVaccine']);
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+Route::post('/profile', 'App\Http\Controllers\ProfileController@store');
 
 Route::post('/auth','App\Http\Controllers\LoginController@autentikasi');
 Route::post('/logout','App\Http\Controllers\LoginController@logout');

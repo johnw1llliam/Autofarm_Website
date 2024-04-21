@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ asset('Styles/loginstyles.css') }}">
 </head>
-<body>
+<body background="{{ asset('Images/Halaman.png') }}">
 <div class="container">
     <div class="row">
         <div class="col-lg-6 offset-lg-8 col-md-8 offset-md-4">

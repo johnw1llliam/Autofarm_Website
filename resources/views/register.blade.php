@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ asset('Styles/registerstyles.css') }}">
 </head>
-<body>
+<body background="{{ asset('Images/Halaman.png') }}">
 <div class="container">
     <div class="row">
         <div class="col-lg-6 offset-lg-8 col-md-8 offset-md-4">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <label for="NamaKandang">Poultry Name</label>
-                        <input type="text" name="NamaKandang" id="NamaKandang" class="form-control @error('NamaKandang') is-invalid @enderror" required>
+                        <input type="text" name="NamaKandang" id="NamaKandang" class="form-control @error('NamaKandang') is-invalid @enderror" required value="{{ old('NamaKandang') }}">
                         @error('NameKandang')
                             <div class="invalid-feedback">
                                 {{ $message }}

@@ -27,10 +27,9 @@
                 </div>
                 <div class="Rights">
                     <div class="Logout">
-                        Welcome User! 
                         <form action="/logout" method="post">
                             @csrf
-                            <button class="BTNlogout" >Logout</button>
+                            Welcome {{ $users[0]->Name }}! <button class="BTNlogout">Logout</button>
                         </form>
                     </div>
                     <div class="EditProfile">
@@ -182,7 +181,7 @@
                 </script>
                 @enderror
                 <div class="close-btn" onclick="togglePoultryNamePopup()">Close</div>
-                <button type="submit" class="btn btn-success">Confirm</button>
+                <button type="submit" class="btn btn-success1">Confirm</button>
             </form>
         </div>
     </div>
@@ -195,7 +194,9 @@
                 @csrf
                 <input type="number" name="AddPakan" placeholder="100" required>
                 <div class="close-btn" onclick="toggleAddFood()">Close</div>
-                <button type="submit" class="btn btn-success">Confirm</button>
+                <fieldset>
+                <button type="submit" class="btn btn-success2">Confirm</button>
+                </fieldset>
             </form>
         </div>
     </div>
@@ -208,7 +209,9 @@
                 @csrf
                 <input type="number" name="SubstractPakan" placeholder="100" required>
                 <div class="close-btn" onclick="toggleSubstractFood()">Close</div>
-                <button type="submit" class="btn btn-success">Confirm</button>
+                <fieldset>
+                <button type="submit" class="btn btn-success2">Confirm</button>
+                </fieldset>
             </form>
         </div>
     </div>
@@ -221,7 +224,9 @@
                 @csrf
                 <input type="number" name="AddAir" placeholder="100" required>
                 <div class="close-btn" onclick="toggleAddWater()">Close</div>
-                <button type="submit" class="btn btn-success">Confirm</button>
+                <fieldset>
+                <button type="submit" class="btn btn-success2">Confirm</button>
+                </fieldset>
             </form>
         </div>
     </div>
@@ -234,7 +239,9 @@
                 @csrf
                 <input type="number" name="SubstractAir" placeholder="100" required>
                 <div class="close-btn" onclick="toggleSubstractWater()">Close</div>
-                <button type="submit" class="btn btn-success">Confirm</button>
+                <fieldset>
+                <button type="submit" class="btn btn-success2">Confirm</button>
+                </fieldset>
             </form>
         </div>
     </div>
@@ -247,7 +254,9 @@
                 @csrf
                 <input type="number" name="AddVaksin" placeholder="100" required>
                 <div class="close-btn" onclick="toggleAddVaccine()">Close</div>
-                <button type="submit" class="btn btn-success">Confirm</button>
+                <fieldset>
+                <button type="submit" class="btn btn-success2">Confirm</button>
+                </fieldset>
             </form>
         </div>
     </div>
@@ -260,7 +269,9 @@
                 @csrf
                 <input type="number" name="SubstractVaksin" placeholder="100" required>
                 <div class="close-btn" onclick="toggleSubstractVaccine()">Close</div>
-                <button type="submit" class="btn btn-success">Confirm</button>
+                <fieldset>
+                <button type="submit" class="btn btn-success2">Confirm</button>
+                </fieldset>
             </form>
         </div>
     </div>

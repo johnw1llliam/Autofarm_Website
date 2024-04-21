@@ -78,7 +78,6 @@ body {
     height: 45px;
     background-color: rgba(128, 128, 128, 0.5);
     border: 1px solid #ccc;
-    text-align: center;
     border-radius: 10px;
 }
 
@@ -89,6 +88,7 @@ body {
     overflow: visible;
     text-decoration: underline;
 }
+
 
 .EditProfile {
     width: 150px;
@@ -310,7 +310,10 @@ svg {
     text-align: center;
     width: 400px;
     overflow-x: auto;
+    padding-top: 15px;
 }
+
+
 
 .box-container {
     display: flex;
@@ -322,41 +325,46 @@ svg {
     display: inline-block;
 }
 
-.red {
+.PageActivity1 {
     display: flex;
     width: 100px;
-    height: 150px;
+    height: 200px;
     background-color: lightcoral;
     border-radius: 0 20px 0 0;
     justify-content: center;
     align-items: center;
     font-weight: 700;
     color: whitesmoke;
+    margin-left: 10px;
+    flex: 0 0 auto;
 }
 
-.green {
+.PageActivity3 {
     display : flex;
     width: 100px;
-    height: 150px;
+    height: 200px;
     background-color: green;
     border-radius: 0 20px 0 0;
     justify-content: center;
     align-items: center;
     font-weight: 700;
     color: white;
+    margin-left: 10px;
+    flex: 0 0 auto;
 }
 
-.blue {
+.PageActivity2 {
     display : flex;
     width: 100px;
-    height: 150px;
+    height: 200px;
     background-color: blue;
     border-radius: 0 20px 0 0;
     justify-content: center;
     align-items: center;
     font-weight: 700;
     color: whitesmoke;
-    flex: 0 0 auto; /* Biarkan item mengatur lebar sesuai kontennya */
+    margin-left: 10px;
+    flex: 0 0 auto;
 }
 
 .ActRed {
@@ -546,6 +554,22 @@ button {
     line-height: 30px;
     text-align: center;
     border-radius: 10%;
+}
+
+.btn-success1 {
+    margin-top: 25px;
+    margin-right: 150px;
+    background-color: lightgreen;
+    font-weight: 700;
+    border-radius: 10%;
+}
+
+.btn-success2 {
+    background-color: lightgreen;
+    font-weight: 700;
+    border-radius: 10%;
+    margin-top: 33px;
+    margin-right: 100px;
 }
 
 .popup .close-btn {

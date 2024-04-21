@@ -34,7 +34,19 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'Name' => 'required|max:8',
+            'Biodata' => 'required|max:50',
+        ]);
+
+        $userId = auth()->user()->id;
+        $updatedUser = Register::where('UserID', $userId)->first();
+
+        $updatedUser->Name = $validatedData["Name"];
+        $updatedUser->Biodata = $validatedData["Biodata"];
+        $updatedUser->save();
+
+        return redirect('/profile');
     }
 
     /**
@@ -56,7 +68,7 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         //
     }

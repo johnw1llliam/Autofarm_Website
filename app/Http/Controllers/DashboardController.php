@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kandang;
 use App\Models\Aktivitas;
-use Illuminate\Support\Facades\Log;
+use App\Models\Register;
 
 class DashboardController extends Controller
 {
@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $userId = auth()->user()->id;
 
         $kandangs = Kandang::where('UserID', $userId)->get();
-
+        $users = Register::where('UserID', $userId)->get();
         $aktivitases = Aktivitas::whereIn('KandangID', function ($query) use ($userId) {
             $query->select('KandangID')->from('Kandang')->where('UserID', $userId);
         })->get();
@@ -25,6 +25,7 @@ class DashboardController extends Controller
         return view('dashboard', [
             'kandangs' => $kandangs,
             'aktivitases' => $aktivitases,
+            'users' => $users,
         ]);
     }
 

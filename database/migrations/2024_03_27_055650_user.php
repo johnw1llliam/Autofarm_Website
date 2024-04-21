@@ -14,7 +14,7 @@ return new class extends Migration
         // Create User table
         Schema::create('User', function (Blueprint $table) {
             $table->increments('UserID');
-            $table->binary('ProfilePicture')->nullable();
+            $table->string('ProfilePicture')->nullable();
             $table->string('Name', 50);
             $table->string('Username', 50);
             $table->char('Password', 60);

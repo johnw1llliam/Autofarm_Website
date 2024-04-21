@@ -4,6 +4,16 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
 .container {
     max-width: 100%;
     height: 100vh;
@@ -87,14 +97,20 @@ body {
     font-size: xx-large;
     font-weight: bold;
 }
+
 .right-box {
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Align children vertically */
+    text-align: center; /* Center text horizontally */
     border-radius: 10px;
     padding: 20px;
     height: 500px;
     margin-top: 50px;
-    margin-left: 200px;
-    width: 600px;
+    margin-left: auto; /* Auto margin left and right for horizontal centering */
+    margin-right: auto;
+    max-width: 600px; /* Limit maximum width for smaller screens */
     /* border:5px solid black; */
 }
 
@@ -119,9 +135,16 @@ body {
     margin-top: 20px;
 }
 
-.input-name{
-    text-align: center;
-    margin-top: 10px;
+.input-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    margin-top: 20px; /* Adjust the value as needed */
 }
 
 .inputnama{
@@ -161,4 +184,5 @@ body {
     background-color: #A9AB3E;
     border: transparent;
     color: white;
+    margin-left: 20px;
 }
