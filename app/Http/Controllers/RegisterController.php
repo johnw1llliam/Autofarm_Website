@@ -61,6 +61,46 @@ class RegisterController extends Controller
         return redirect('/login')->with('success', 'Registration Success!');
     }
 
+    public function apiRegister(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:8',
+            'username' => 'required|string|max:20',
+            'password' => 'required|string|min:5',
+            'email' => 'required|email:dns|unique:user',
+            'namaKandang' => 'required|max:20',
+        ]);
+
+        $password = bcrypt($validatedData['password']);
+
+        $user = new Register;
+        $user->Name = $validatedData['name'];
+        $user->Username = $validatedData['username'];
+        $user->Password = $password;
+        $user->Email = $validatedData['email'];
+        $user->save();
+
+        $users = new User;
+        $users->name = $validatedData['name'];
+        $users->password = $password;
+        $users->email = $validatedData['email'];
+        $users->save();
+
+        $kandang = new Kandang;
+        $kandang->UserID = $user->UserID;
+        $kandang->NamaKandang = $validatedData['namaKandang'];
+        $kandang->save();
+
+        return response()->json([
+            'error' => false,
+            'message' => 'User registered successfully',
+            'data' => [
+                'user' => $user,
+                'kandang' => $kandang,
+            ],
+        ], 201); // 201 Created
+    }
+
     /**
      * Display the specified resource.
      */

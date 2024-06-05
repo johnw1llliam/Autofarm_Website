@@ -29,6 +29,35 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function apiKandang($id) {
+        $kandangs = Kandang::where('UserID', $id)->get();
+
+        if (request()->segment(1)=='api') return response()->json([
+            'error' => false,
+            'list' => $kandangs,
+        ]);
+    }
+
+    public function apiAktivitas($id) {
+        $aktivitases = Aktivitas::whereIn('KandangID', function ($query) use ($id) {
+            $query->select('KandangID')->from('Kandang')->where('UserID', $id);
+        })->get();
+
+        if (request()->segment(1)=='api') return response()->json([
+            'error' => false,
+            'list' => $aktivitases,
+        ]);
+    }
+
+    public function apiUser($id) {
+        $users = Register::where('UserID', $id)->get();
+
+        if (request()->segment(1)=='api') return response()->json([
+            'error' => false,
+            'list' => $users,
+        ]);
+    }
+
     public function addPoultry(Request $request) {
         $validatedData = $request->validate([
             'NamaKandang' => 'required|max:20|unique:kandang',
@@ -41,7 +70,25 @@ class DashboardController extends Controller
         return redirect('/dashboard');
     }
 
-    public function addFood(Request $request) {
+    public function apiAddPoultry(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'namaKandang' => 'required|max:20|unique:kandang',
+        ]);
+
+        $kandang = new Kandang;
+        $kandang->UserID = $id;
+        $kandang->NamaKandang = $validatedData['namaKandang'];
+        $kandang->save();
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Kandang added successfully',
+            'data' => $kandang,
+        ], 201); // 201 Created
+    }
+
+    public function addFood(Request $request, $id) {
         $namaKandang = $request->input('NamaKandang');
         $totalPakan = $request->input('TotalPakan');
     
@@ -50,6 +97,23 @@ class DashboardController extends Controller
         $kandang->save();
 
         return redirect('/dashboard');
+    }
+
+    public function apiAddFood(Request $request, $namaKandang)
+    {
+        $validatedData = $request->validate([
+            'totalPakan' => 'required|numeric|min:0',
+        ]);
+
+        $kandang = Kandang::where('NamaKandang', $namaKandang)->firstOrFail();
+        $kandang->TotalPakan += $validatedData['totalPakan'];
+        $kandang->save();
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Food added successfully',
+            'data' => $kandang,
+        ]);
     }
     
     public function substractFood(Request $request) {
@@ -71,6 +135,30 @@ class DashboardController extends Controller
         return redirect('/dashboard');
     }
 
+    public function apiSubtractFood(Request $request, $namaKandang)
+    {
+        $validatedData = $request->validate([
+            'jumlahPakan' => 'required|numeric|min:0',
+        ]);
+
+        $kandang = Kandang::where('NamaKandang', $namaKandang)->firstOrFail();
+        $kandangID = $kandang->KandangID;
+        $kandang->TotalPakan -= $validatedData['jumlahPakan'];
+        $kandang->save();
+
+        $aktivitas = new Aktivitas;
+        $aktivitas->KandangID = $kandangID;
+        $aktivitas->JumlahPakan = $validatedData['jumlahPakan'];
+        $aktivitas->Waktu = now();
+        $aktivitas->save();
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Food subtracted successfully',
+            'data' => $kandang,
+        ]);
+    }
+
     public function addWater(Request $request) {
         $namaKandang = $request->input('NamaKandang');
         $totalAir = $request->input('TotalAir');
@@ -80,6 +168,23 @@ class DashboardController extends Controller
         $kandang->save();
 
         return redirect('/dashboard');
+    }
+
+    public function apiAddWater(Request $request, $namaKandang)
+    {
+        $validatedData = $request->validate([
+            'totalAir' => 'required|numeric|min:0',
+        ]);
+
+        $kandang = Kandang::where('NamaKandang', $namaKandang)->firstOrFail();
+        $kandang->TotalAir += $validatedData['totalAir'];
+        $kandang->save();
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Water added successfully',
+            'data' => $kandang,
+        ]);
     }
     
     public function substractWater(Request $request) {
@@ -101,6 +206,30 @@ class DashboardController extends Controller
         return redirect('/dashboard');
     }
 
+    public function apiSubtractWater(Request $request, $namaKandang)
+    {
+        $validatedData = $request->validate([
+            'jumlahAir' => 'required|numeric|min:0',
+        ]);
+
+        $kandang = Kandang::where('NamaKandang', $namaKandang)->firstOrFail();
+        $kandangID = $kandang->KandangID;
+        $kandang->TotalAir -= $validatedData['jumlahAir'];
+        $kandang->save();
+
+        $aktivitas = new Aktivitas;
+        $aktivitas->KandangID = $kandangID;
+        $aktivitas->JumlahAir = $validatedData['jumlahAir'];
+        $aktivitas->Waktu = now();
+        $aktivitas->save();
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Water subtracted successfully',
+            'data' => $kandang,
+        ]);
+    }
+
     public function addVaccine(Request $request) {
         $namaKandang = $request->input('NamaKandang');
         $totalVaksin = $request->input('TotalVaksin');
@@ -110,6 +239,23 @@ class DashboardController extends Controller
         $kandang->save();
 
         return redirect('/dashboard');
+    }
+
+    public function apiAddVaccine(Request $request, $namaKandang)
+    {
+        $validatedData = $request->validate([
+            'totalVaksin' => 'required|numeric|min:0',
+        ]);
+
+        $kandang = Kandang::where('NamaKandang', $namaKandang)->firstOrFail();
+        $kandang->TotalVaksin += $validatedData['totalVaksin'];
+        $kandang->save();
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Vaccine added successfully',
+            'data' => $kandang,
+        ]);
     }
     
     public function substractVaccine(Request $request) {
@@ -129,6 +275,30 @@ class DashboardController extends Controller
         $aktivitas->save();
 
         return redirect('/dashboard');
+    }
+
+    public function apiSubtractVaccine(Request $request, $namaKandang)
+    {
+        $validatedData = $request->validate([
+            'jumlahVaksin' => 'required|numeric|min:0',
+        ]);
+
+        $kandang = Kandang::where('NamaKandang', $namaKandang)->firstOrFail();
+        $kandangID = $kandang->KandangID;
+        $kandang->TotalVaksin -= $validatedData['jumlahVaksin'];
+        $kandang->save();
+
+        $aktivitas = new Aktivitas;
+        $aktivitas->KandangID = $kandangID;
+        $aktivitas->JumlahVaksin = $validatedData['jumlahVaksin'];
+        $aktivitas->Waktu = now();
+        $aktivitas->save();
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Vaccine subtracted successfully',
+            'data' => $kandang,
+        ]);
     }
 
     /**

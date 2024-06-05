@@ -24,7 +24,7 @@
                     </div>
                 @endif
                 <h8 class="mb-4 tekslogin">Login to your account</h8> <br>
-                <h8 class="mb-4">See what's going on with your bussiness</h8> <br>
+                <h8 class="mb-4">See what's going on with your business</h8> <br>
                 <form class="formlogin" method="post" action="/auth">
                 @csrf
                     <div class="form-group">

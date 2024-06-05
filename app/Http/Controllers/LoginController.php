@@ -34,9 +34,42 @@ class LoginController extends Controller
         }
     }
 
+    public function apiLogin(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:8',
+        ]);
+
+        if (Auth::attempt([
+            'email' => $validatedData['email'],
+            'password' => $validatedData['password'],
+        ])) {
+            return response()->json([
+                'login' => true,
+                'message' => 'Login successful',
+                'userID' => auth()->user()->id,
+            ]);
+        } else {
+            return response()->json([
+                'login' => false,
+                'message' => 'Invalid credentials',
+            ]);
+        }
+    }
+
     public function logout() {
         Auth::logout();
         return redirect('/login');
+    }
+
+    public function apiLogout(Request $request)
+    {
+        Auth::logout();
+        return response()->json([
+            'logout' => true,
+            'message' => 'Logout successful',
+        ]);
     }
 
     /**
